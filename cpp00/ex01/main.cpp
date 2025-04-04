@@ -1,10 +1,5 @@
 #include "Contact.hpp"
 #include "PhoneBook.hpp"
-#include <iostream>
-#include <string>
-#include <iomanip>
-#include <limits>
-#include <cstdlib>
 
 int main(void)
 {

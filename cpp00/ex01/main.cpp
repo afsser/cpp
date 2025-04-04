@@ -5,7 +5,6 @@
 #include <iomanip>
 #include <limits>
 #include <cstdlib>
-#include <cctype>
 
 int main(void)
 {
@@ -21,10 +20,12 @@ int main(void)
 			break;
 		if (command == "ADD")
 			phoneBook.addContact();
-		// else if (command == "SEARCH")
-		// 	phoneBook.searchContact();
-		// else if (command == "EXIT")
-		// 	break;
+		else if (command == "SEARCH")
+			phoneBook.searchContact();
+		else if (command == "EXIT")
+			break;
+		else if (command == "")
+			continue;
 		else
 			std::cout << "Invalid command. Please try again." << std::endl;
 	}

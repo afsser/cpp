@@ -1,6 +1,11 @@
 #ifndef PHONEBOOK_HPP
 #define PHONEBOOK_HPP
 
+#include <cctype>
+#include <algorithm>
+#include <iostream>
+#include <iomanip>
+#include <limits>
 #include "Contact.hpp"
 
 class PhoneBook
@@ -16,7 +21,6 @@ class PhoneBook
 
 		void addContact(void);
 		void searchContact(void);
-		void displayContact(void);
 };
 
 #endif

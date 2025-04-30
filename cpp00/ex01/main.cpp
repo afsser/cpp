@@ -7,6 +7,7 @@ int main(void)
 	std::string command;
 
 	std::cout << "Welcome to the PhoneBook!" << std::endl;
+	std::cout << "You can add up to 8 contacts." << std::endl;
 	while (true)
 	{
 		std::cout << "Enter a command (ADD, SEARCH, EXIT): ";

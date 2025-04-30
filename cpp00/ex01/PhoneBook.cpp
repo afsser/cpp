@@ -82,12 +82,11 @@ void displayContact(int index, Contact contact_list[8])
 
 void PhoneBook::searchContact(void)
 {
-	if (_nbContacts == 0)
+	if (_nbContacts == 0 )
 	{
 		std::cout << "No contacts found." << std::endl;
 		return;
 	}
-	
 
 	std::cout << "---------------------------------------------" << std::endl;
 	std::cout << "|    Index | 1st Name | LastName | Nickname |" << std::endl;
@@ -103,14 +102,21 @@ void PhoneBook::searchContact(void)
 
 	std::cout << "---------------------------------------------" << std::endl;
 
-	int index;
+	int index = 0;
 	int isValidIndex = false;
 	while (!isValidIndex)
 	{
-		std::cout << "Enter the index of the contact you want to view: ";
+		std::cout << "Which contact do you want to see? (type -1 to return): ";
 		std::cin >> index;
+		// std::cin.
+		if (index == -1)
+		{
+			std::cout << "Returning to main menu." << std::endl;
+			std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+			std::cin.clear();
+			return;
+		}
 		if (std::cin.fail() || index < 0 || index >= _nbContacts)
-
 		{
 			std::cin.clear();
 			std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');

@@ -9,7 +9,7 @@ SRCS = PhoneBook.cpp main.cpp Contact.cpp
 
 OBJS = $(addprefix $(BIN_DIR), $(SRCS:%.cpp=%.o))
 
-INCLUDES = ./includes/
+INCLUDES = .
 
 BIN_DIR = ./bin/
 

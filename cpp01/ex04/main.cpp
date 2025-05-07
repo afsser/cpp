@@ -19,7 +19,15 @@ static int	open_file(std::string infileName, std::string outfileName, std::ifstr
 
 void	copy_and_replace(std::ifstream *infile, std::ofstream *outfile, std::string str_sub, std::string str_add)
 {
+	std::string::size_type	i;
+	std::string::size_type	i;
+	std::string				line;
+	while (getline(*infile, line))
+	{
+		
+	}
 	
+
 }
 
 int	main(int argc, char **argv)

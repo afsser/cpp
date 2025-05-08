@@ -51,6 +51,8 @@ static int	copy_and_replace(std::ifstream *infile, std::ofstream *outfile, std::
 
 int	main(int argc, char **argv)
 {
+	if (argc != 4)
+		return (std::cerr << "Wrong number of arguments\n./ft_sed <file> <s1> <s2>" << std::endl, EXIT_FAILURE);
 	std::string 	str_sub = argv[2];
 	std::string		str_add = argv[3];
 	std::string 	infileName = argv[1];
@@ -58,8 +60,6 @@ int	main(int argc, char **argv)
 	std::ifstream	infile;
 	std::ofstream	outfile;
 
-	if (argc != 4)
-		return (std::cerr << "Wrong number of arguments\n./ft_sed <file> <s1> <s2>" << std::endl, EXIT_FAILURE);
 	outfileName = infileName + ".replace";
 	if (open_file(infileName, outfileName, &infile, &outfile))
 		return (EXIT_FAILURE);

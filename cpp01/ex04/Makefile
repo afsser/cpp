@@ -37,13 +37,11 @@ $(BIN_DIR)%.o: ./%.cpp
 	@$(CXX) $(CXXFLAGS) -c $< -o $@ -I $(INCLUDES)
 
 clean:
-	@rm -f $(OBJS)
-	@rm -rf $(BIN_DIR)
-	@echo	$(RED)"$(NAME) objects removed"$(END)
+	@rm -f $(OBJS) && echo	$(RED)"$(NAME) objects removed"$(END)
+	@rm -rf $(BIN_DIR) 
 
 fclean: clean
-	@rm -f $(NAME)
-	@echo $(RED)"$(NAME) removed"$(END)
+	@rm -f $(NAME) && echo $(RED)"$(NAME) removed"$(END)
 
 re: fclean all
 

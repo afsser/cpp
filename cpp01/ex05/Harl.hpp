@@ -23,8 +23,6 @@ class Harl
 		void _info(void);
 		void _warning(void);
 		void _error(void);
-		void (Harl::*f[4])();
-		std::string levels[4];
 };
 
 #endif

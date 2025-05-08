@@ -1,19 +1,8 @@
 #include "Harl.hpp"
 #include <iostream>
 
-Harl::Harl()
-{
-	this->f[0] = &Harl::_debug;
-	this->f[1] = &Harl::_info;
-	this->f[2] = &Harl::_warning;
-	this->f[3] = &Harl::_error;
-	this->levels[0] = "DEBUG";
-	this->levels[1] = "INFO";
-	this->levels[2] = "WARNING";
-	this->levels[3] = "ERROR";
-}
+Harl::Harl() {}
 Harl::~Harl() {}
-
 void Harl::_debug()
 {
 	std::cout << BOLD << "[ DEBUG ]" << RST << std::endl;
@@ -38,33 +27,29 @@ void Harl::_error()
 void Harl::complain(std::string level)
 {
 	int i;
+	void (Harl::*f[4])() = {&Harl::_debug, &Harl::_info, &Harl::_warning, &Harl::_error};
+
+	std::string levels[4] = {"DEBUG", "INFO", "WARNING", "ERROR"};
+
 
 	i = 0;
-	while (i < 4 && this->levels[i] != level)
-		i++;
-	switch(i)
+	while (i < 4)
 	{
-		case 0:
-			(this->*f[0])();
-			/* fall through */
-		case 1:
-			(this->*f[1])();
-			/* fall through */
-		case 2:
-			(this->*f[2])();
-			/* fall through */
-		case 3:
-			(this->*f[3])();
-			break ;
-		default:
-			std::cout << RED << "[ I'm not programmed to respond to this level ]" << RST << std::endl;
-			std::cout << RED << "Please use one of the following levels: DEBUG, INFO, WARNING, ERROR." << RST << std::endl;
-			std::cout << RED << "I will now exit." << RST << std::endl;
-			std::cout << RED << "Please try again." << RST << std::endl;
-			std::cout << RED << "Thank you for your understanding." << RST << std::endl;
-			std::cout << RED << "Have a nice day!" << RST << std::endl;
-			std::cout << RED << "Goodbye!" << RST << std::endl;
+		if (levels[i] == level)
+		{
+			(this->*f[i])();
 			return ;
+		}
+		i++;
 	}
+	std::cout << RED << "[ I'm not programmed to respond to this level ]" << RST << std::endl;
+	std::cout << RED << "Please use one of the following levels: DEBUG, INFO, WARNING, ERROR." << RST << std::endl;
+	std::cout << RED << "I will now exit." << RST << std::endl;
+	std::cout << RED << "Please try again." << RST << std::endl;
+	std::cout << RED << "Thank you for your understanding." << RST << std::endl;
+	std::cout << RED << "Have a nice day!" << RST << std::endl;
+	std::cout << RED << "Goodbye!" << RST << std::endl;
+
 
 }
+

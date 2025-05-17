@@ -12,13 +12,11 @@
 
 class ClapTrap
 {
-private:
+protected:
 	std::string 	_name;
 	unsigned int	_hp;
 	unsigned int	_ep;
 	unsigned int	_atkDmg;
-
-protected:
 	unsigned int	_maxHp;
 	unsigned int	_maxEp;
 

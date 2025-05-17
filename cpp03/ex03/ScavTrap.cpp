@@ -33,6 +33,15 @@ ScavTrap &ScavTrap::operator=(const ScavTrap &copy) {
 	}
 	return *this;
 }
+void	ScavTrap::attack(const std::string& target) {
+	if (this->_ep > 0) {
+		this->_ep--;
+		std::cout << YEL << "The relentless " << BLU << this->_name << YEL << " hits " << target << " with " << RED << this->_atkDmg << YEL << " damage!" << RST << std::endl;
+	}
+	else if (this->_ep == 0) {
+		std::cout << YEL << this->_name << " have no energy to attack " << target << " !" << RST << std::endl;
+	}
+}
 void ScavTrap::guardGate(void) {
 	if (this->_ep > 0) {
 		this->_ep -= 5;

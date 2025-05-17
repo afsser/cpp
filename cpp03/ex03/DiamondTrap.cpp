@@ -48,3 +48,7 @@ void DiamondTrap::showStatus(void) const {
 	std::cout << BLU << this->_ep << YEL << " energy points and ";
 	std::cout << RED << this->_atkDmg << YEL << " attack damage!" << RST << std::endl;
 }
+
+void DiamondTrap::attack(const std::string& target) {
+	ScavTrap::attack(target);
+}

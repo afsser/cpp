@@ -17,6 +17,7 @@ public:
 	DiamondTrap(std::string name);
 	void	whoAmI(void) const;
 	void	showStatus(void) const;
+	void	attack(const std::string& target);
 };
 
 #endif

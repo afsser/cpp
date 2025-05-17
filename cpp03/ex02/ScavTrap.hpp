@@ -12,6 +12,7 @@ public:
 	ScavTrap(const ScavTrap &copy);
 	ScavTrap(std::string name);
 	void	guardGate(void);
+	void	attack(const std::string& target);
 };
 
 #endif

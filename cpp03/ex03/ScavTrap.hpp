@@ -15,6 +15,7 @@ public:
 	static const unsigned int	_defaultHp = 100;
 	static const unsigned int	_defaultEp = 50;
 	static const unsigned int	_defaultAtkDmg = 20;
+	void	attack(const std::string& target);
 };
 
 #endif

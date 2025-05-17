@@ -11,11 +11,11 @@ public:
 	ScavTrap &operator=(const ScavTrap &copy);
 	ScavTrap(const ScavTrap &copy);
 	ScavTrap(std::string name);
+	void	attack(const std::string& target);
 	void	guardGate(void);
 	static const unsigned int	_defaultHp = 100;
 	static const unsigned int	_defaultEp = 50;
 	static const unsigned int	_defaultAtkDmg = 20;
-	void	attack(const std::string& target);
 };
 
 #endif

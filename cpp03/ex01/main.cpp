@@ -1,11 +1,12 @@
 #include "ClapTrap.hpp"
+#include "ScavTrap.hpp"
 
 #include <cstdlib>
 
 int	main(void) {
-	ClapTrap ed = ClapTrap("Ed");
-	ClapTrap rob = ClapTrap("Rob");
-	ClapTrap rud = ClapTrap("Rud");
+	ScavTrap ed = ScavTrap("Ed");
+	ScavTrap rud = ScavTrap("Rud");
+	rud.guardGate();
 	ed.attack(rud.getName());
 	rud.takeDamage(ed.getAtkDmg());
 	ed.setAtkDmg(5);
@@ -13,15 +14,20 @@ int	main(void) {
 	rud.takeDamage(ed.getAtkDmg());
 	rud.beRepaired(5);
 	rud.beRepaired(5);
-	ClapTrap ross = ClapTrap("Ross");
-	rud.setAtkDmg(5);
-	rud.attack(ross.getName());
-	ross.takeDamage(rud.getAtkDmg());
-	rud.attack(ross.getName());
-	ross.takeDamage(rud.getAtkDmg());
-	rud.attack(ross.getName());
-	ross.takeDamage(rud.getAtkDmg());
-
+	rud.attack(ed.getName());
+	ed.takeDamage(rud.getAtkDmg());
+	rud.attack(ed.getName());
+	ed.takeDamage(rud.getAtkDmg());
+	rud.attack(ed.getName());
+	ed.takeDamage(rud.getAtkDmg());
+	rud.attack(ed.getName());
+	ed.takeDamage(rud.getAtkDmg());
+	rud.attack(ed.getName());
+	ed.takeDamage(rud.getAtkDmg());
+	rud.attack(ed.getName());
+	ed.takeDamage(rud.getAtkDmg());
+	rud.attack(ed.getName());
+	ed.takeDamage(rud.getAtkDmg());
 
 	return (EXIT_SUCCESS);
 }

@@ -18,10 +18,6 @@ private:
 	unsigned int	_ep;
 	unsigned int	_atkDmg;
 
-protected:
-	unsigned int	_maxHp;
-	unsigned int	_maxEp;
-
 public:
 	ClapTrap();
 	~ClapTrap();
@@ -30,11 +26,6 @@ public:
 	ClapTrap(std::string name);
 	std::string 	getName(void) const;
 	unsigned int	getAtkDmg(void) const;
-	unsigned int	getHp(void) const;
-	unsigned int	getEp(void) const;
-	void			setName(std::string name);
-	void			setHp(unsigned int hp);
-	void			setEp(unsigned int ep);
 	void			setAtkDmg(unsigned int atkDmg);
 	void			attack(const std::string& target);
 	void			takeDamage(unsigned int amount);

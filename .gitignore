@@ -6,6 +6,9 @@ bin
 ft_sed
 Harl
 harlFilter
+scavTrap
+clapTrap
+fragTrap
 
 
 # Prerequisites

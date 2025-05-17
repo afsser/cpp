@@ -1,11 +1,11 @@
-NAME = clapTrap
+NAME = fragTrap
 
 CXX = c++
 
 CXXFLAGS = -Wall -Wextra -Werror -g3 -std=c++98
 
 # Files
-SRCS = main.cpp ClapTrap.cpp
+SRCS = main.cpp ClapTrap.cpp ScavTrap.cpp FragTrap.cpp
 
 OBJS = $(addprefix $(BIN_DIR), $(SRCS:%.cpp=%.o))
 

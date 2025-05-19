@@ -8,12 +8,16 @@ Dog::~Dog() {
 	std::cout << BLU << this->_type << YEL << " destroyed" << RST << std::endl;
 }
 Dog::Dog(const Dog &copy) : Animal(copy) {
+	this->_brain = new Brain(*copy._brain);
 	std::cout << BLU << copy._type << BOLD << " copied" << RST << std::endl;
 	*this = copy;
 }
 Dog &Dog::operator=(const Dog &copy) {
 	if (this != &copy) {
-		this->_type = copy._type;
+		Animal::operator=(copy);
+		if (this->_brain)
+			delete this->_brain;
+		this->_brain = new Brain(*copy._brain);
 		std::cout << BLU << this->_type << BOLD << " assigned" << RST << std::endl;
 	}
 	return *this;

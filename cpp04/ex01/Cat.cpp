@@ -9,12 +9,16 @@ Cat::~Cat() {
 	std::cout << BLU << this->_type << YEL << " destroyed" << RST << std::endl;
 }
 Cat::Cat(const Cat &copy) : Animal(copy) {
+	this->_brain = new Brain(*copy._brain);
 	std::cout << BLU << copy._type << BOLD << " copied" << RST << std::endl;
 	*this = copy;
 }
 Cat &Cat::operator=(const Cat &copy) {
 	if (this != &copy) {
-		this->_type = copy._type;
+		Animal::operator=(copy);
+		if (this->_brain)
+			delete this->_brain;
+		this->_brain = new Brain(*copy._brain);
 		std::cout << BLU << this->_type << BOLD << " assigned" << RST << std::endl;
 	}
 	return *this;

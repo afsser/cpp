@@ -48,8 +48,33 @@ int	main(int argc, char **argv) {
 			std::cout << GRN << dog->getBrain()->getIdeas()[0] << std::endl;
 		}
 	}
+
 	for (int i = 0; i < qty; i++) {
 		delete animals[i];
 	}
+	std::cout << std::endl;
+	std::cout << GRN << "------------------------------" << RST << std::endl;
+	std::cout << std::endl;
+
+	std::cout << BLU << "Deep copy test:" << RST << std::endl;
+	AAnimal *OG = new Cat();
+	Cat *d_OG = dynamic_cast<Cat *>(OG);
+	AAnimal *bootleg = new Cat(*d_OG);
+	Cat *d_bootleg = dynamic_cast<Cat *>(bootleg);
+	if (!d_OG || !d_bootleg)
+	{
+		std::cout << RED << "Error: dynamic_cast failed" << RST << std::endl;
+		return (EXIT_FAILURE);
+	}
+
+	d_OG->getBrain()->getIdeas()[0] = "I am the original";
+	d_bootleg->getBrain()->getIdeas()[0] = "I am the copy";
+
+	std::cout << BLU << "OG" << YEL << " had an idea: ";
+	std::cout << GRN << d_OG->getBrain()->getIdeas()[0] << std::endl;
+	std::cout << BLU << "bootleg" << YEL << " had an idea: ";
+	std::cout << GRN << d_bootleg->getBrain()->getIdeas()[0] << std::endl;
+	delete OG;
+	delete bootleg;
 	return (EXIT_SUCCESS);
 }

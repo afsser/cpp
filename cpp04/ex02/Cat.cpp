@@ -11,7 +11,6 @@ Cat::~Cat() {
 Cat::Cat(const Cat &copy) : AAnimal(copy) {
 	this->_brain = new Brain(*copy._brain);
 	std::cout << BLU << copy._type << BOLD << " copied" << RST << std::endl;
-	*this = copy;
 }
 Cat &Cat::operator=(const Cat &copy) {
 	if (this != &copy) {

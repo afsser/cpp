@@ -48,3 +48,14 @@ int	main(void) {
 
 	return (EXIT_SUCCESS);
 }
+
+// int main()
+// {
+// const WrongAnimal* meta = new WrongAnimal();
+// const WrongAnimal* i = new WrongCat();
+// std::cout << i->getType() << " " << std::endl;
+// i->makeSound();
+// meta->makeSound();
+
+// return 0;
+// }

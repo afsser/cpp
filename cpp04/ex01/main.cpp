@@ -31,6 +31,17 @@ int	main(int argc, char **argv) {
 	for (int i = 0; i < qty; i++) {
 		delete animals[i];
 	}
+
+	std::cout << std::endl;
+	std::cout << GRN << "------------------------------" << RST << std::endl;
+	std::cout << std::endl;
+	
+	std::cout << BLU << "Deep copy test:" << RST << std::endl;
+
+	Dog basic;
+	{
+		Dog tmp = basic;
+	}
 	
 	std::cout << std::endl;
 	std::cout << GRN << "------------------------------" << RST << std::endl;

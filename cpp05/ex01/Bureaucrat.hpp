@@ -2,11 +2,12 @@
 # define BUREAUCRAT_HPP
 
 # include "../Colors.hpp"
-
 # include <iostream>
 # include <string>
 # include <exception>
 # include <cstdlib>
+
+class Form;
 
 class Bureaucrat {
 private:
@@ -21,8 +22,10 @@ public:
 	unsigned int getGrade() const;
 	Bureaucrat(std::string name, unsigned int grade);
 
-	void incrementGrade();
-	void decrementGrade();
+	void	incrementGrade();
+	void	decrementGrade();
+
+	void	signForm(Form &form) const;
 
 	class GradeTooHighException : public std::exception {
 		public:
@@ -34,6 +37,6 @@ public:
 	};
 };
 
-std::ostream& operator<<(std::ostream& os, const Bureaucrat& bureaucrat);
+std::ostream &operator<<(std::ostream& os, const Bureaucrat& bureaucrat);
 
 #endif

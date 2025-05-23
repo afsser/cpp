@@ -1,6 +1,7 @@
 #include "Bureaucrat.hpp"
+#include "Form.hpp"
 
-Bureaucrat::Bureaucrat() : _name("null"), _grade(0) {
+Bureaucrat::Bureaucrat() : _name("null"), _grade(150) {
 	std::cout << BOLD "Bureaucrat default constructor called" RST << std::endl;
 }
 
@@ -41,6 +42,11 @@ std::string Bureaucrat::getName() const {
 
 unsigned int Bureaucrat::getGrade() const {
 	return (this->_grade);
+}
+
+void Bureaucrat::signForm(Form &form) const {
+	if (form.beSigned(*this))
+		std::cout << BLU << this->_name << GRN " signed " BLU << form.getName() << RST << std::endl;	
 }
 
 void Bureaucrat::incrementGrade() {

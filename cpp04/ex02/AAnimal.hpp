@@ -10,6 +10,8 @@
 # define BLU "\033[1;36m"
 # define RST "\033[0m"
 
+class Brain;
+
 class AAnimal
 {
 protected:
@@ -22,7 +24,7 @@ public:
 	virtual ~AAnimal();
 	std::string 	getType(void) const;
 	virtual void	makeSound(void) const = 0;
+	virtual Brain	*getBrain(void) const = 0;
 };
-
 
 #endif

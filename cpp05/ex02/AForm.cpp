@@ -1,28 +1,29 @@
-#include "Form.hpp"
+#include "AForm.hpp"
 #include "Bureaucrat.hpp"
+#include "../Colors.hpp"
 
-Form::Form() : _name("Form"), _signed(false), _signMin(150), _execMin(150) {
+AForm::AForm() : _name("Form"), _signed(false), _signMin(150), _execMin(150) {
 	std::cout << BOLD "Form default constructor called" RST << std::endl;
 }
-Form::Form(std::string name, unsigned int signMin, unsigned int execMin) {
+AForm::AForm(std::string name, unsigned int signMin, unsigned int execMin) {
 	if (signMin < 1 || execMin < 1)
-		throw Form::GradeTooHighException();
+		throw AForm::GradeTooHighException();
 	else if (signMin > 150 || execMin > 150)
-		throw Form::GradeTooLowException();
+		throw AForm::GradeTooLowException();
 	this->_name = name;
 	this->_signed = false;
 	this->_signMin = signMin;
 	this->_execMin = execMin;
 	std::cout << BOLD "Form " BLU << this->_name << BOLD " created" RST << std::endl;
 }
-Form::~Form() {
+AForm::~AForm() {
 	std::cout << BLU << this->_name << BOLD " form destructor called" RST << std::endl;
 }
-Form::Form(const Form &copy) {
+AForm::AForm(const AForm &copy) {
 	std::cout << BLU "Form copy constructor called" RST << std::endl;
 	*this = copy;
 }
-Form &Form::operator=(const Form &copy) {
+AForm &AForm::operator=(const AForm &copy) {
 	std::cout << YEL "Form copy assignment operator called" RST << std::endl;
 	if (this != &copy) {
 		this->_name = copy._name;
@@ -32,19 +33,19 @@ Form &Form::operator=(const Form &copy) {
 	}
 	return *this;
 }
-std::string Form::getName() const {
+std::string AForm::getName() const {
 	return (this->_name);
 }
-bool Form::getSigned() const {
+bool AForm::getSigned() const {
 	return (this->_signed);
 }
-unsigned int Form::getSignMin() const {
+unsigned int AForm::getSignMin() const {
 	return (this->_signMin);
 }
-unsigned int Form::getExecMin() const {
+unsigned int AForm::getExecMin() const {
 	return (this->_execMin);
 }
-bool Form::beSigned(const Bureaucrat &b) {
+bool AForm::beSigned(const Bureaucrat &b) {
 	if (this->_signed) {
 		std::cout << BLU << b.getName() << RED " couldn't sign " BLU << this->_name << YEL " form:" RED " it is already signed" RST << std::endl;
 		return (false);
@@ -53,18 +54,18 @@ bool Form::beSigned(const Bureaucrat &b) {
 		this->_signed = true;
 		return (true);
 	} else {
-		throw Form::GradeTooHighException();
+		throw AForm::GradeTooHighException();
 	}
 		std::cout << BLU << b.getName() << YEL " couldn't sign " BLU << this->_name << YEL " form:" RED " unknown error" RST << std::endl;
 		return (false);
 }
-const char* Form::GradeTooHighException::what() const throw() {
+const char* AForm::GradeTooHighException::what() const throw() {
 	return (RED "Form grade is too high" RST);
 }
-const char* Form::GradeTooLowException::what() const throw() {
+const char* AForm::GradeTooLowException::what() const throw() {
 	return (RED "Form grade is too low" RST);
 }
-std::ostream& operator<<(std::ostream& os, const Form& form) {
+std::ostream& operator<<(std::ostream& os, const AForm& form) {
 	os << std::endl;
 	os << BOLD "Form: " << BLU << form.getName() << RST << std::endl;
 	os << YEL "Currently " << RST;

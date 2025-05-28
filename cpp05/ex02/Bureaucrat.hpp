@@ -1,13 +1,12 @@
 #ifndef BUREAUCRAT_HPP
 # define BUREAUCRAT_HPP
 
-# include "../Colors.hpp"
 # include <iostream>
 # include <string>
 # include <exception>
 # include <cstdlib>
 
-class Form;
+class AForm;
 
 class Bureaucrat {
 private:
@@ -21,12 +20,10 @@ public:
 	std::string getName() const;
 	unsigned int getGrade() const;
 	Bureaucrat(std::string name, unsigned int grade);
-
 	void	incrementGrade();
 	void	decrementGrade();
-
-	void	signForm(Form &form) const;
-
+	void	signForm(AForm &form) const;
+	void	executeForm(const AForm &form) const;
 	class GradeTooHighException : public std::exception {
 		public:
 			const char* what() const throw();

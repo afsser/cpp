@@ -5,7 +5,8 @@ CXX = c++
 CXXFLAGS = -Wall -Wextra -Werror -g3 -std=c++98
 
 # Files
-SRCS = main.cpp Bureaucrat.cpp Form.cpp
+SRCS = main.cpp Bureaucrat.cpp AForm.cpp ShrubberyCreationForm.cpp \
+	RobotomyRequestForm.cpp PresidentialPardonForm.cpp
 
 OBJS = $(addprefix $(BIN_DIR), $(SRCS:%.cpp=%.o))
 

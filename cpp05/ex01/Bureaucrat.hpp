@@ -1,7 +1,6 @@
 #ifndef BUREAUCRAT_HPP
 # define BUREAUCRAT_HPP
 
-# include "../Colors.hpp"
 # include <iostream>
 # include <string>
 # include <exception>
@@ -11,7 +10,7 @@ class Form;
 
 class Bureaucrat {
 private:
-	std::string 	_name;
+	const std::string 	_name;
 	unsigned int 	_grade;
 public:
 	Bureaucrat();

@@ -1,34 +1,28 @@
 #include "Form.hpp"
 #include "Bureaucrat.hpp"
 
-Form::Form() : _name("Form"), _signed(false), _signMin(150), _execMin(150) {
+Form::Form() : _name("Form"), _signMin(150), _execMin(150), _signed(false) {
 	std::cout << BOLD "Form default constructor called" RST << std::endl;
 }
-Form::Form(std::string name, unsigned int signMin, unsigned int execMin) {
+Form::Form(std::string name, unsigned int signMin, unsigned int execMin) :
+	_name(name), _signMin(signMin), _execMin(execMin), _signed(false) {
 	if (signMin < 1 || execMin < 1)
 		throw Form::GradeTooHighException();
 	else if (signMin > 150 || execMin > 150)
 		throw Form::GradeTooLowException();
-	this->_name = name;
-	this->_signed = false;
-	this->_signMin = signMin;
-	this->_execMin = execMin;
 	std::cout << BOLD "Form " BLU << this->_name << BOLD " created" RST << std::endl;
 }
 Form::~Form() {
 	std::cout << BLU << this->_name << BOLD " form destructor called" RST << std::endl;
 }
-Form::Form(const Form &copy) {
+Form::Form(const Form &copy) :
+	_name(copy._name), _signMin(copy._signMin), _execMin(copy._execMin), _signed(copy._signed) {
 	std::cout << BLU "Form copy constructor called" RST << std::endl;
-	*this = copy;
 }
 Form &Form::operator=(const Form &copy) {
 	std::cout << YEL "Form copy assignment operator called" RST << std::endl;
 	if (this != &copy) {
-		this->_name = copy._name;
 		this->_signed = copy._signed;
-		this->_signMin = copy._signMin;
-		this->_execMin = copy._execMin;
 	}
 	return *this;
 }

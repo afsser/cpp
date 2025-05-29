@@ -1,4 +1,5 @@
 #include "Bureaucrat.hpp"
+#include "../Colors.hpp"
 
 int main() {
 	std::cout << ORG "==== BUREAUCRAT CREATION ====" RST << std::endl;

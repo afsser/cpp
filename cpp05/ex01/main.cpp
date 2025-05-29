@@ -1,5 +1,6 @@
 #include "Bureaucrat.hpp"
 #include "Form.hpp"
+#include "../Colors.hpp"
 
 int main() {
 	std::cout << ORG "==== FORM CREATION ====" RST << std::endl;

@@ -6,12 +6,11 @@ Bureaucrat::Bureaucrat() : _name("null"), _grade(150) {
 	std::cout << BOLD "Bureaucrat default constructor called" RST << std::endl;
 }
 
-Bureaucrat::Bureaucrat(std::string name, unsigned int grade) {
+Bureaucrat::Bureaucrat(std::string name, unsigned int grade) : _name(name) {
 	if (grade < 1)
 		throw Bureaucrat::GradeTooHighException();
 	else if (grade > 150)
 		throw Bureaucrat::GradeTooLowException();
-	this->_name = name;
 	this->_grade = grade;
 	std::cout << BOLD "Bureaucrat " BLU << this->_name << BOLD " created" RST << std::endl;
 }
@@ -31,7 +30,6 @@ Bureaucrat::Bureaucrat(const Bureaucrat &copy) {
 Bureaucrat &Bureaucrat::operator=(const Bureaucrat& copy) {
 	std::cout << YEL "Bureaucrat copy assignment operator called" RST << std::endl;
 	if (this != &copy) {
-		this->_name = copy._name;
 		this->_grade = copy._grade;
 	}
 	return *this;

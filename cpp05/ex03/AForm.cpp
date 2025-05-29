@@ -2,34 +2,28 @@
 #include "Bureaucrat.hpp"
 #include "../Colors.hpp"
 
-AForm::AForm() : _name("Form"), _signed(false), _signMin(150), _execMin(150) {
+AForm::AForm() : _name("Form"), _signMin(150), _execMin(150), _signed(false) {
 	std::cout << BOLD "Form abstract default constructor called" RST << std::endl;
 }
-AForm::AForm(std::string name, unsigned int signMin, unsigned int execMin) {
+AForm::AForm(std::string name, unsigned int signMin, unsigned int execMin) :
+	_name(name), _signMin(signMin), _execMin(execMin) {
 	if (signMin < 1 || execMin < 1)
 		throw AForm::GradeTooHighException();
 	else if (signMin > 150 || execMin > 150)
 		throw AForm::GradeTooLowException();
-	this->_name = name;
 	this->_signed = false;
-	this->_signMin = signMin;
-	this->_execMin = execMin;
 	std::cout << BLU << this->_name << YEL " abstract" BOLD " constructor called" RST << std::endl;
 }
 AForm::~AForm() {
 	std::cout << BLU << this->_name << BOLD " form" YEL " abstract" BOLD " destructor called" RST << std::endl;
 }
-AForm::AForm(const AForm &copy) {
+AForm::AForm(const AForm &copy) : _name(copy._name), _signMin(copy._signMin), _execMin(copy._execMin), _signed(copy._signed) {
 	std::cout << BLU "Form" YEL " abstract" BOLD " copy constructor called" RST << std::endl;
-	*this = copy;
 }
 AForm &AForm::operator=(const AForm &copy) {
 	std::cout << YEL "Form" YEL " abstract" BOLD " copy assignment operator called" RST << std::endl;
 	if (this != &copy) {
-		this->_name = copy._name;
 		this->_signed = copy._signed;
-		this->_signMin = copy._signMin;
-		this->_execMin = copy._execMin;
 	}
 	return *this;
 }

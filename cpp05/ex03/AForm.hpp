@@ -8,10 +8,10 @@ class Bureaucrat;
 
 class AForm {
 private:
-	std::string 	_name;
-	bool			_signed;
-	unsigned int	_signMin;
-	unsigned int	_execMin;
+	const std::string 	_name;
+	const unsigned int	_signMin;
+	const unsigned int	_execMin;
+	bool				_signed;
 public:
 	AForm();
 	virtual ~AForm();

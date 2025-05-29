@@ -7,8 +7,11 @@ RobotomyRequestForm::RobotomyRequestForm() :
 	_target("default")
 {
 	std::cout << BOLD "RobotomyRequestForm default constructor called" RST << std::endl;
+	this->_target = "default";
 }
-RobotomyRequestForm::RobotomyRequestForm(const std::string &target) : AForm("RobotomyRequestForm", 72, 45), _target(target)
+RobotomyRequestForm::RobotomyRequestForm(const std::string &target) :
+	AForm("RobotomyRequestForm", 72, 45),
+	_target(target)
 {
 	std::cout << BLU << this->_target;
 	std::cout << BOLD "'s RobotomyRequestForm parameterized constructor called" RST << std::endl;

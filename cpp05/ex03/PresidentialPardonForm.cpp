@@ -7,10 +7,11 @@ PresidentialPardonForm::PresidentialPardonForm() :
 	_target("default")
 {
 	std::cout << BOLD "PresidentialPardonForm default constructor called" RST << std::endl;
+	this->_target = "default";
 }
 PresidentialPardonForm::PresidentialPardonForm(const std::string &target) :
 	AForm("PresidentialPardonForm", 25, 5),
-	_target(target)
+	_target(target)	
 {
 	std::cout << BLU << this->_target;
 	std::cout << BOLD "'s PresidentialPardonForm parameterized constructor called" RST << std::endl;

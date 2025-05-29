@@ -9,6 +9,7 @@ ShrubberyCreationForm::ShrubberyCreationForm() :
 	_target("default")
 {
 	std::cout << BOLD "ShrubberyCreationForm default constructor called" RST << std::endl;
+	this->_target = "default";
 }
 ShrubberyCreationForm::ShrubberyCreationForm(const std::string &target) :
 	AForm("ShrubberyCreationForm", 145, 137),

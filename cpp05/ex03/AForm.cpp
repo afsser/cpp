@@ -65,3 +65,12 @@ const char* AForm::GradeTooLowException::what() const throw() {
 	return (RED "Form grade is too low" RST);
 }
 
+std::ostream &operator<<(std::ostream &os, const AForm &form) {
+	os << std::endl;
+	os << YEL "Form name: " BLU << form.getName() << std::endl;
+	os << YEL "Signed: " << (form.getSigned() ? GRN "Yes" : RED "No") << std::endl;
+	os << YEL "Sign Min: " BLU << form.getSignMin() << std::endl; 
+	os << YEL "Exec Min: " BLU << form.getExecMin() << std::endl;
+	os << std::endl;
+	return os;
+}

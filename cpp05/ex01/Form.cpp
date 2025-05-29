@@ -1,5 +1,6 @@
 #include "Form.hpp"
 #include "Bureaucrat.hpp"
+#include "../Colors.hpp"
 
 Form::Form() : _name("Form"), _signMin(150), _execMin(150), _signed(false) {
 	std::cout << BOLD "Form default constructor called" RST << std::endl;

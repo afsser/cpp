@@ -26,7 +26,7 @@ ScalarConverter &ScalarConverter::operator=(const ScalarConverter &copy) {
 void	convertToChar(const std::string str)
 {
 	try {
-		if (str.length() == 1 && std::isprint(str[0])) {
+		if (str.length() == 1 && std::isprint(str[0]) && !std::isdigit(str[0])) {
 			std::cout << "char: '" << str[0] << "'" << std::endl;
 			return;
 		}

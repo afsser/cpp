@@ -2,10 +2,8 @@
 #include <iostream>
 #include <limits>
 #include <cmath>
-#include <iomanip>
 #include <stdexcept>
 #include <cstdlib>
-#include "../colors.hpp"
 
 ScalarConverter::ScalarConverter() {
 	// Default constructor

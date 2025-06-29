@@ -35,6 +35,60 @@ int main(int, char**)
         for (size_t i = 0; i < stringArray.size(); ++i)
             std::cout << "stringArray[" << i << "] = " << stringArray[i] << std::endl;
     }
+    std::cout << ORG "=== DEEP COPY TEST ===" RST << std::endl;
+    {
+        Array<int> original(5);
+        for (int i = 0; i < 5; ++i)
+            original[i] = i * 10;
+
+        Array<int> copy(original);
+        std::cout << "Original array: ";
+        for (int i = 0; i < 5; ++i)
+            std::cout << original[i] << " ";
+        std::cout << std::endl;
+
+        std::cout << "Copied array: ";
+        for (int i = 0; i < 5; ++i)
+            std::cout << copy[i] << " ";
+        std::cout << std::endl;
+
+        copy[0] = 100;
+        std::cout << "After modifying copy[0]: ";
+        for (int i = 0; i < 5; ++i)
+            std::cout << copy[i] << " ";
+        std::cout << std::endl;
+        
+        std::cout << "Original array after modification: ";
+        for (int i = 0; i < 5; ++i)
+            std::cout << original[i] << " ";
+        std::cout << std::endl;
+    }
+    std::cout << ORG "=== ASSIGNMENT OPERATOR TEST ===" RST << std::endl;
+    {
+        Array<int> array1(3);
+        array1[0] = 1;
+        array1[1] = 2;
+        array1[2] = 3;
+        Array<int> array2;
+        array2 = array1;
+        std::cout << "Array1: ";
+        for (size_t i = 0; i < array1.size(); ++i)
+            std::cout << array1[i] << " ";
+        std::cout << std::endl;
+        std::cout << "Array2 after assignment: ";
+        for (size_t i = 0; i < array2.size(); ++i)
+            std::cout << array2[i] << " ";
+        std::cout << std::endl;
+        array2[1] = 42;
+        std::cout << "Array2 after modification: ";
+        for (size_t i = 0; i < array2.size(); ++i)
+            std::cout << array2[i] << " ";
+        std::cout << std::endl;
+        std::cout << "Array1 after Array2 modification: ";
+        for (size_t i = 0; i < array1.size(); ++i)
+            std::cout << array1[i] << " ";
+        std::cout << std::endl;
+    }
     std::cout << ORG "=== SUBJECT TEST ===" RST << std::endl;
     {
     Array<int> numbers(MAX_VAL);

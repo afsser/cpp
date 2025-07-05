@@ -1,11 +1,12 @@
-NAME = iter
+NAME = mutant
 
 CXX = c++
 
 CXXFLAGS = -Wall -Wextra -Werror -g3 -std=c++98
 
 # Files
-SRCS = main.cpp
+SRCS = main.cpp \
+		MutantStack.cpp
 
 OBJS = $(addprefix $(BIN_DIR), $(SRCS:%.cpp=%.o))
 

@@ -1,5 +1,5 @@
 
-#include "Span.hpp"
+#include "MutantStack.hpp"
 #include <stdexcept>
 #include <iostream>
 #include <vector>
@@ -7,20 +7,20 @@
 #include <cmath>
 #include "colors.hpp"
 
-Span::Span(unsigned int n) : _size(n) {}
+MutantStack::MutantStack(unsigned int n) : _size(n) {}
 
-Span::Span(const Span &other) : _vector(other._vector), _size(other._size) {}
+MutantStack::MutantStack(const MutantStack &other) : _vector(other._vector), _size(other._size) {}
 
-Span &Span::operator=(const Span &other) {
+MutantStack &MutantStack::operator=(const MutantStack &other) {
 	if (this != &other) {
 		_vector = other._vector;
 		_size = other._size;
 	}
 	return *this;
 }
-Span::~Span() {}
+MutantStack::~MutantStack() {}
 
-int Span::shortestSpan() {
+int MutantStack::shortestSpan() {
 	int					minSpan;
 	int					span;
 	std::vector<int>	sorted;
@@ -38,7 +38,7 @@ int Span::shortestSpan() {
 	}
 	return (minSpan);
 }
-int Span::longestSpan() {
+int MutantStack::longestSpan() {
 	std::vector<int> sorted = _vector;
 
 	if (_vector.size() < 2)
@@ -47,31 +47,31 @@ int Span::longestSpan() {
 	return (sorted.back() - sorted.front());
 }
 
-void Span::addNumber(int n) {
+void MutantStack::addNumber(int n) {
 	if (_vector.size() >= _size)
-		throw std::out_of_range("Span is FULL");
+		throw std::out_of_range("MutantStack is FULL");
 	_vector.push_back(n);
 }
 
-void Span::addRange(std::vector<int>::iterator begin, std::vector<int>::iterator end) {
+void MutantStack::addRange(std::vector<int>::iterator begin, std::vector<int>::iterator end) {
 	if (std::distance(begin, end) + _vector.size() > _size)
-		throw std::out_of_range("Span is FULL");
+		throw std::out_of_range("MutantStack is FULL");
 	_vector.insert(_vector.end(), begin, end);
 }
 
-size_t Span::getSize() const {
+size_t MutantStack::getSize() const {
 	return _vector.size();
 }
 
-int Span::getElement(unsigned int index) const {
+int MutantStack::getElement(unsigned int index) const {
 	if (index >= _vector.size())
 		throw std::out_of_range("Index out of range");
 	return _vector[index];
 }
 
-std::ostream &operator<<(std::ostream &os, const Span &span)
+std::ostream &operator<<(std::ostream &os, const MutantStack &span)
 {
-	os << YEL "Span vector: " RST;
+	os << YEL "MutantStack vector: " RST;
 	for (size_t i = 0; i < span.getSize(); i++) {
 		os << BLU << span.getElement(i) << RST;
 		if (i < span.getSize() - 1)

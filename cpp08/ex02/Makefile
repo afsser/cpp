@@ -5,8 +5,7 @@ CXX = c++
 CXXFLAGS = -Wall -Wextra -Werror -g3 -std=c++98
 
 # Files
-SRCS = main.cpp \
-		MutantStack.cpp
+SRCS = main.cpp
 
 OBJS = $(addprefix $(BIN_DIR), $(SRCS:%.cpp=%.o))
 

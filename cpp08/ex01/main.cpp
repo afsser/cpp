@@ -12,6 +12,7 @@ int main()
     {
         int     size;
         int     nbr;
+        int     span;
         size = 3;
         Span    test(size);
         for (int i = 0; i < size; i++){
@@ -20,16 +21,19 @@ int main()
             std::cout << nbr << " " << std::endl;
         }
         try {
-            std::cout << YEL "Shortest Span: " BLU << test.shortestSpan() << std::endl;
+            std::cout << YEL "Shortest Span: " RST << std::endl;
+            span = test.shortestSpan();
+            std::cout << BLU << span << std::endl;
         } catch (std::exception &e) {
             std::cout << RED "Error: " RST << e.what() << std::endl;
         }
         try {
-            std::cout << YEL "Longest Span: " BLU << test.longestSpan() << std::endl;
+            std::cout << YEL "Longest Span: " RST << std::endl;
+            span = test.longestSpan();
+            std::cout << BLU << span << std::endl;
         } catch (std::exception &e) {
             std::cout << RED "Error: " RST << e.what() << std::endl;
         }
-
     }
     std::cout << std::endl;
     std::cout << ORG "=== ADD RANGE TEST ===" RST << std::endl;
@@ -57,23 +61,21 @@ int main()
     std::cout << ORG "=== HUGE TEST ===" RST << std::endl;
     {
         Span hugeTest(20000);
+        int span;
         for (int i = 0; i < 20000; i++) {
-            int nbr = std::rand() % 20000;
-            if (nbr < 5000)
-                nbr += std::rand() % 1000;
-            else if (nbr > 15000)
-                nbr -= std::rand() % 1000;
-            hugeTest.addNumber(nbr);
+            hugeTest.addNumber(std::rand() % 20000);
         }
         try {
-            int span = hugeTest.shortestSpan();
-            std::cout << YEL "Shortest Span: " BLU << span << std::endl;
+            std::cout << YEL "Shortest Span: " RST << std::endl;
+            span = hugeTest.shortestSpan();
+            std::cout << BLU << span << RST << std::endl;
         } catch (std::exception &e) {
             std::cout << RED "Error: " RST << e.what() << std::endl;
         }
         try {
-            int span = hugeTest.longestSpan();
-            std::cout << YEL "Longest Span: " BLU << span << std::endl;
+            std::cout << YEL "Longest Span: " RST << std::endl;
+            span = hugeTest.longestSpan();
+            std::cout << BLU << span << RST << std::endl;
         } catch (std::exception &e) {
             std::cout << RED "Error: " RST << e.what() << std::endl;
         }

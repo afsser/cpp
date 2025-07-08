@@ -23,7 +23,10 @@ Span::~Span() {}
 int Span::shortestSpan() {
 	int					minSpan;
 	int					span;
+	size_t				minIndex = 0;
 	std::vector<int>	sorted;
+	std::vector<int>::iterator it_a;
+	std::vector<int>::iterator it_b;
 
 	if (_vector.size() < 2)
 		throw std::logic_error("Not enough numbers to get shortest span");
@@ -34,8 +37,12 @@ int Span::shortestSpan() {
 	{
 		span = std::abs(sorted[i] - sorted[i - 1]);
 		if (span < minSpan)
+		{
 			minSpan = span;
+			minIndex = i;	
+		}
 	}
+	std::cout << GRN "From " BLU << sorted[minIndex - 1] << GRN " to " BLU << sorted[minIndex] << RST << std::endl;
 	return (minSpan);
 }
 int Span::longestSpan() {
@@ -44,6 +51,7 @@ int Span::longestSpan() {
 	if (_vector.size() < 2)
 		throw std::logic_error("Not enough numbers to get longest span");
 	std::sort(sorted.begin(), sorted.end());
+	std::cout << GRN "From " BLU << sorted.front() << GRN " to " BLU << sorted.back() << RST << std::endl;
 	return (sorted.back() - sorted.front());
 }
 

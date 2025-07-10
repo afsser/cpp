@@ -8,14 +8,17 @@
 class BitcoinExchange {
 private:
 	std::map<int, float> _inputData;
-	std::map<int, float> _processedData;
+	std::map<int, float> _baseData;
 public:
 	BitcoinExchange();
 	BitcoinExchange(const BitcoinExchange &other);
 	BitcoinExchange &operator=(const BitcoinExchange &other);
 	~BitcoinExchange();
 
-	void	dbLoad(const std::string &input);
-	void	fileLoad(const std::string &input);
+	bool	dbLoad(const std::string &input);
+	bool	fileLoad(const std::string &input);
+	std::map<int, float> getBaseData() const;
+	std::map<int, float> getInputData() const;
+	void	printInputData() const;
 };
 #endif

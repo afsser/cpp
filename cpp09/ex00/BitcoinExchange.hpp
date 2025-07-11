@@ -16,7 +16,7 @@ public:
 	~BitcoinExchange();
 
 	bool	dbLoad(const std::string &input);
-	bool	fileLoad(const std::string &input);
+	void	fileProcess(const std::string &input);
 	std::map<int, float> getBaseData() const;
 	std::map<int, float> getInputData() const;
 	void	printInputData() const;

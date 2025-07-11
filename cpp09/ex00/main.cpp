@@ -12,8 +12,6 @@ int	main(int argc, char **argv)
 	BitcoinExchange	btc;
 	if (!btc.dbLoad("data.csv"))
 		return (1);
-	if (!btc.fileLoad(argv[1]))
-		return (1);
-	btc.printInputData();
+	btc.fileProcess(argv[1]);
 	return (0);
 }

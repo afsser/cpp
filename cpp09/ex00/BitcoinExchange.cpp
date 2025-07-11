@@ -8,7 +8,6 @@
 #include <cstdlib>
 #include <algorithm>
 #include <sstream>
-#include <list>
 #include <map>
 
 BitcoinExchange::BitcoinExchange() {}
@@ -42,14 +41,6 @@ static std::string removeDashes(std::string &date) {
 	return (result);
 }
 
-static bool isValidNumber(const std::string &str, double &outValue) {
-	char *endptr;
-	outValue = std::strtod(str.c_str(), &endptr);
-	while (*endptr == ' ' || *endptr == '\t') ++endptr;
-	return (*endptr == '\0');
-}
-
-// Função utilitária para remover espaços do início e fim de uma string
 static std::string trim(const std::string &str) {
     size_t first = str.find_first_not_of(" \t\n\r");
     if (first == std::string::npos)
@@ -57,6 +48,54 @@ static std::string trim(const std::string &str) {
     size_t last = str.find_last_not_of(" \t\n\r");
     return str.substr(first, (last - first + 1));
 }
+
+static bool isLeapYear(int year) {
+	int firstLeapYear = 2008;
+	return (year >= firstLeapYear && (year - firstLeapYear) % 4 == 0);
+}
+
+static int getDaysInMonth(int year, int month) {
+	if (month < 1 || month > 12)
+		return 0;
+	int monthDays[] = { 31, isLeapYear(year) ? 29 : 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
+	return (monthDays[month - 1]);
+}
+
+static bool isValidDate(const std::string &date) {
+	if (date.length() != 10 || date[4] != '-' || date[7] != '-') {
+		return false;
+	}
+	for (size_t i = 0; i < date.length(); ++i) {
+		if (i == 4 || i == 7) continue;
+		if (!std::isdigit(date[i])) {
+			return false;
+		}
+	}
+	int year = std::atoi((date.substr(0, 4)).c_str());
+	int month = std::atoi((date.substr(5, 2)).c_str());
+	int day = std::atoi((date.substr(8, 2)).c_str());
+	if (year < 1 || year > 2022) {
+		return false;
+	}
+	if (month < 1 || month > 12) {
+		return false;
+	}
+	if (day < 1 || day > getDaysInMonth(year, month)) {
+		return false;
+	}
+	return true;
+}
+
+static bool isValidNumber(const std::string &str, double &outValue) {
+	char *endptr;
+	if (str.empty()) {
+		return false;
+	}
+	outValue = std::strtod(str.c_str(), &endptr);
+	while (*endptr == ' ' || *endptr == '\t') ++endptr;
+	return (*endptr == '\0');
+}
+
 
 bool BitcoinExchange::dbLoad(const std::string &fileName) {
 	std::ifstream file(fileName.c_str());
@@ -72,7 +111,8 @@ bool BitcoinExchange::dbLoad(const std::string &fileName) {
 			continue ;
 		}
 		date = line.substr(0, line.find(','));
-		if (trim(date) == "date") {
+		date = trim(date);
+		if (date == "date") {
 			continue ;
 		}
 		valueStr = line.substr(line.find(',') + 1);
@@ -93,17 +133,14 @@ bool BitcoinExchange::dbLoad(const std::string &fileName) {
 	return true;
 }
 
-// Atualiza o método fileLoad para usar std::list
-bool BitcoinExchange::fileLoad(const std::string &fileName) {
-	if (fileName != "input.txt") {
-		std::cerr << RED "Error: Invalid file name. Expected 'input.txt'." RST << std::endl;
-		return false;
+void BitcoinExchange::fileProcess(const std::string &fileName) {
+	if (fileName.substr(fileName.find_last_of(".") + 1) != "txt") {
+		std::cerr << RED "Error: Invalid file name. Expected a .txt file." RST << std::endl;
+		return ;
 	}
 	std::ifstream file(fileName.c_str());
-	if (!file.is_open()) {
+	if (!file.is_open())
 		std::cerr << RED "Error: Could not open file " RST << std::endl;
-		return false;
-	}
 	std::string line;
 	std::string date;
 	std::string valueStr;
@@ -112,22 +149,40 @@ bool BitcoinExchange::fileLoad(const std::string &fileName) {
 			continue ;
 		}
 		date = line.substr(0, line.find('|'));
-		if (trim(date) == "date") {
+		date = trim(date);
+		if (date == "date") {
 			continue ;
 		}
 		valueStr = line.substr(line.find('|') + 1);
+		valueStr = trim(valueStr);
 		double value;
-		if (!isValidNumber(valueStr, value)) {
-			std::cerr << RED "Error: Invalid number format in input: '" << valueStr << "' for date " << date << RST << std::endl;
+		if (!isValidDate(date)) {
+			std::cerr << RED "Error: Invalid date in input: '" YEL << date << RED "'." RST << std::endl;
 			continue ;
 		}
-		_inputData[std::atoi(removeDashes(date).c_str())] = value;
+		if (!isValidNumber(valueStr, value)) {
+			std::cerr << RED "Error: Invalid value format in input for date " YEL << date << RST << std::endl;
+			continue ;
+		}
+		if (value < 0) {
+			std::cerr << RED "Error: Negative value " YEL << value << RED " for date " YEL << date << RST << std::endl;
+			continue ;
+		}
+		if (value > 1000) {
+			std::cerr << RED "Error: Value too large (higher than 1000) " YEL << value << RED " for date " YEL << date << RST << std::endl;
+			continue ;
+		}
+		int intDate = std::atoi(removeDashes(date).c_str());
+		if (intDate < 20090102 || intDate > 20220329) {
+			std::cerr << RED "Error: Date " YEL << date << RED " out of range" RST << std::endl;
+			continue ;
+		}
+		while (this->_baseData.find(intDate) == this->_baseData.end()) {
+			intDate--;
+		}
+		std::cout << ORG "Date: " YEL << date << ORG ", Value: " YEL << value << ORG " => " BLU
+		          << value * this->_baseData[intDate] << RST << std::endl;
 	}
-	if (_inputData.empty()) {
-		std::cerr << RED "Error: No valid data found in file " RST << fileName << std::endl;
-		return false;
-	}
-	return true;
 }
 
 std::string editedDate(int date) {
@@ -138,25 +193,4 @@ std::string editedDate(int date) {
         return strDate.substr(0, 4) + "-" + strDate.substr(4, 2) + "-" + strDate.substr(6, 2);
     }
     return "error";
-}
-
-// Atualiza printInputData para iterar sobre o vector
-void BitcoinExchange::printInputData() const {
-	for (std::map<int, float>::const_iterator it = _inputData.begin(); it != _inputData.end(); ++it) {
-		int date = it->first;
-		float value = it->second;
-		if (date < 20090102 || date > 20220329) {
-			std::cerr << RED "Error: Date out of range " YEL << editedDate(date) << RST << std::endl;
-			continue ;
-		}
-		if (value < 0) {
-			std::cerr << RED "Error: Date " YEL << editedDate(date) << RED " have negative value " YEL << value << RST << std::endl;
-			continue ;
-		}
-		if (value > 1000) {
-			std::cerr << RED "Error: Value too large (higher than 1000) " YEL << value << RED " for date " RST << editedDate(date) << std::endl;
-			continue ;
-		}
-		std::cout << ORG "Date: " YEL << editedDate(date) << ORG ", Value: " YEL << value << ORG " => " BLU << value * getBaseData().at(date) << RST << std::endl;
-	}
 }

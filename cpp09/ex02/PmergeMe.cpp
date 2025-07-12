@@ -1,7 +1,6 @@
 #include "PmergeMe.hpp"
 #include "colors.hpp"
 #include <iostream>
-#include <sys/time.h>
 
 PmergeMe::PmergeMe(int size, char **argv) : _size(size), _args(argv) {}
 
@@ -23,7 +22,6 @@ bool PmergeMe::parseInput() {
 			}
 		}
 		long num = std::atol(_args[i]);
-		std::cout << "Input: " << ORG << _args[i] << RST;
 		if (num > 2147483647) {
 			std::cerr << RED "Error: Numbers greater than maximum int (>2147483647) are not allowed." RST << std::endl;
 			return false;

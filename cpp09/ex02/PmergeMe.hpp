@@ -6,8 +6,6 @@
 #include <list>
 #include <algorithm>
 #include <string>
-#include <sstream>
-#include "PmergeMe.tpp"
 
 class PmergeMe {
 private:
@@ -23,18 +21,23 @@ public:
 
 	bool	parseInput();
 
-	// template <typename T>
-	// double	sortContainer(T &container, std::string type);
+	template <typename T>
+	void fordJohnsonSort(T &container, std::string type);
 
-	// template <typename T>
-	// void	printContainer(const T &container) const;
+	template <typename T>
+	double	sortContainer(T &container, std::string type);
 
-	// template <typename T>
-	// void	printTime(const T &container, double time, const std::string &type) const;
+	template <typename T>
+	void	printContainer(const T &container) const;
+
+	template <typename T>
+	void	printTime(const T &container, double time, const std::string &type) const;
 
 	std::vector<int>& getVector();
 
 	std::list<int>& getList();
 };
+
+#include "PmergeMe.tpp"
 
 #endif

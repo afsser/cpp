@@ -2,7 +2,7 @@
 #include <iostream>
 #include <sys/time.h>
 
-std::vector<size_t> jacobsthalSequence(size_t n) {
+inline std::vector<size_t> jacobsthalSequence(size_t n) {
 	std::vector<size_t> seq;
 	if (n == 0)
 		return seq;
@@ -21,7 +21,7 @@ std::vector<size_t> jacobsthalSequence(size_t n) {
 }
 
 template <typename T>
-void fordJohnsonSort(T &container, std::string type) {
+void PmergeMe::fordJohnsonSort(T &container, std::string type) {
 	T		minors, majors;
 	long	first, second;
 	std::vector<size_t> jacobOrder;
@@ -49,18 +49,19 @@ void fordJohnsonSort(T &container, std::string type) {
 
 	}
 
-	fordJohnsonSort(majors);
-
+	fordJohnsonSort(majors, type);
 	jacobOrder = jacobsthalSequence(minors.size());
 	for (size_t i = 0; i < jacobOrder.size(); ++i) {
+		typename T::iterator minorIt = minors.begin();
+		std::advance(minorIt, jacobOrder[i]);
 		if (type == "vector") {
-			typename T::iterator pos = std::lower_bound(majors.begin(), majors.end(), minors[jacobOrder[i]]);
-			majors.insert(pos, minors[jacobOrder[i]]);
+			typename T::iterator pos = std::lower_bound(majors.begin(), majors.end(), *minorIt);
+			majors.insert(pos, *minorIt);
 		} else if (type == "list") {
 			typename T::iterator pos = majors.begin();
-			while (pos != majors.end() && *pos < minors[jacobOrder[i]])
+			while (pos != majors.end() && *pos < *minorIt)
 				++pos;
-			majors.insert(pos, minors[jacobOrder[i]]);
+			majors.insert(pos, *minorIt);
 		}
 	}
 	container = majors;

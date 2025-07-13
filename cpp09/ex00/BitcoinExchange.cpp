@@ -6,7 +6,7 @@
 /*   By: fcaldas- <fcaldas-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/11 19:20:39 by fcaldas-          #+#    #+#             */
-/*   Updated: 2025/07/11 19:20:40 by fcaldas-         ###   ########.fr       */
+/*   Updated: 2025/07/12 23:14:26 by fcaldas-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -146,7 +146,8 @@ bool BitcoinExchange::dbLoad(const std::string &fileName) {
 }
 
 void BitcoinExchange::fileProcess(const std::string &fileName) {
-	if (fileName.substr(fileName.find_last_of(".") + 1) != "txt") {
+	if (fileName.substr(fileName.find_last_of(".") + 1) != "txt"
+			&& fileName.substr(fileName.find_last_of(".") + 1) != "csv") {
 		std::cerr << RED "Error: Invalid file name. Expected a .txt file." RST << std::endl;
 		return ;
 	}

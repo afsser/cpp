@@ -6,7 +6,7 @@
 /*   By: fcaldas- <fcaldas-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/11 19:21:11 by fcaldas-          #+#    #+#             */
-/*   Updated: 2025/07/11 20:32:13 by fcaldas-         ###   ########.fr       */
+/*   Updated: 2025/07/12 23:12:09 by fcaldas-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 class RPN {
 private:
 	std::string 		_expression;
-	std::stack<char>	_stack;
+	std::stack<long>	_stack;
 	RPN();
 	RPN(const RPN &other);
 	RPN &operator=(const RPN &other);

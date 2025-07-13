@@ -6,7 +6,7 @@
 /*   By: fcaldas- <fcaldas-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/11 19:20:17 by fcaldas-          #+#    #+#             */
-/*   Updated: 2025/07/11 20:39:31 by fcaldas-         ###   ########.fr       */
+/*   Updated: 2025/07/12 23:39:01 by fcaldas-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,26 +49,20 @@ bool RPN::parseExpression() {
 bool RPN::calculate() const {
 	int		result = 0;
 	int		i = 0;
-	bool 	lastIsDigit = false;
-	std::stack<char> mt = this->_stack;
+	std::stack<long> mt = this->_stack;
 	std::string expr = this->_expression;
 	while (!expr.empty())
 	{
 		if (expr.c_str()[i] == ' '){
-			if (lastIsDigit == true)
-				lastIsDigit = false;
 			expr.erase(i, 1);
 			continue ;
 		}
 		if (isdigit(expr.c_str()[i])) {
 			mt.push(expr.c_str()[i] - '0');
-			lastIsDigit = true;
 			expr.erase(i, 1);
 			continue ;
 		}
 		if (isOperator(expr.c_str()[i])) {
-			if (lastIsDigit == true)
-				lastIsDigit = false;
 			if (mt.size() < 2) {
 				std::cerr << RED "Error: Invalid Expression: Not enough digits for operation." RST << std::endl;
 				return false;

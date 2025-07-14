@@ -16,7 +16,7 @@ int main(int argc, char **argv) {
         return 1;
     }
     srand(time(NULL));
-    std::string operators = "+-*/";
+    std::string operators = "+-*";
     std::vector<std::string> nums;
     std::vector<std::string> ops;
 
@@ -28,7 +28,7 @@ int main(int argc, char **argv) {
     }
     // Generate N operators
     for (int i = 0; i < n_ops; ++i)
-        ops.push_back(std::string(1, operators[rand() % 4]));
+        ops.push_back(std::string(1, operators[rand() % 3]));
 
     // Build expression: start with two numbers, then alternate
     std::string expr = nums[0] + " " + nums[1];

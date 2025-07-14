@@ -16,10 +16,9 @@ int main(int argc, char **argv) {
 	double timeVector = pmerge.sortContainer<std::vector<int> >(pmerge.getVector(), "vector");
 	std::cout << GRN "After:  " RST;
 	pmerge.printContainer<std::vector<int> >(pmerge.getVector());
-	
-	double timeList = pmerge.sortContainer<std::list<int> >(pmerge.getList(), "list");
-
 	pmerge.printTime<std::vector<int> >(pmerge.getVector(), timeVector, "vector");
+
+	double timeList = pmerge.sortContainer<std::list<int> >(pmerge.getList(), "list");	
 	pmerge.printTime<std::list<int> >(pmerge.getList(), timeList, "list");
 
 	return (0);

@@ -2,6 +2,25 @@
 #include <iostream>
 #include <sys/time.h>
 
+inline std::vector<size_t> treatedSequence(std::vector<size_t> &seq, size_t n) {
+	std::vector<size_t> treatedSeq;
+	std::vector<bool> used(n, false);
+	for (size_t i = 0; i < seq.size(); ++i) {
+		if (!used[seq[i]] && seq[i] < n) {
+			treatedSeq.push_back(seq[i]);
+			used[seq[i]] = true;
+		}
+	}
+	for (size_t i = 0; i < n; ++i) {
+		if (!used[i]) {
+			treatedSeq.push_back(i);
+			used[i] = true;
+		}
+	}
+
+	return treatedSeq;
+} 
+
 inline std::vector<size_t> jacobsthalSequence(size_t n) {
 	std::vector<size_t> seq;
 	if (n == 0)
@@ -17,7 +36,7 @@ inline std::vector<size_t> jacobsthalSequence(size_t n) {
 		if (seq[i] > n) 
 			seq[i] = n - 1;
 	}
-	return seq;
+	return treatedSequence(seq, n);
 }
 
 template <typename T>
@@ -50,7 +69,9 @@ void PmergeMe::fordJohnsonSort(T &container, std::string type) {
 	}
 
 	fordJohnsonSort(majors, type);
+
 	jacobOrder = jacobsthalSequence(minors.size());
+
 	for (size_t i = 0; i < jacobOrder.size(); ++i) {
 		typename T::iterator minorIt = minors.begin();
 		std::advance(minorIt, jacobOrder[i]);

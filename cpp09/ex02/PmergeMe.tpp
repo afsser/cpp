@@ -96,8 +96,8 @@ double PmergeMe::sortContainer(T &container, std::string type) {
 	fordJohnsonSort(container, type);
 
 	gettimeofday(&end, NULL);
-	double timeTaken = (end.tv_sec - start.tv_sec) * 1000.0; // Convert to milliseconds
-	timeTaken += (end.tv_usec - start.tv_usec) / 1000.0; // Add microseconds in milliseconds
+	double timeTaken = (end.tv_sec - start.tv_sec) * 1000.0;
+	timeTaken += (end.tv_usec - start.tv_usec) / 1000.0;
 
 	return timeTaken;
 }
